@@ -37,12 +37,12 @@ public class ConnectionRegistry
     
     public Guid GuidByConn(ref NetworkConnection conn)
     {
-        return _idByCon[conn];
+        return _idByCon.ContainsKey(conn) ? _idByCon[conn] : default;
     }
     
     public NetworkConnection ConnByGuid(ref Guid guid)
     {
-        return _conById[guid];
+        return _conById.ContainsKey(guid) ? _conById[guid] : default;
     }
     
     public List<NetworkConnection> ToList()

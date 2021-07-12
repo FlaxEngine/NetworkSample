@@ -264,11 +264,9 @@
     <Compile Include="Game\Network\Packets\NetworkPacket.cs" />
     <Compile Include="Game\Network\Packets\PlayerConnectedPacket.cs" />
     <Compile Include="Game\Network\Packets\PlayerDisconnectedPacket.cs" />
-    <Compile Include="Game\Network\Packets\PlayerDisconnectPacket.cs" />
     <Compile Include="Game\Network\Packets\PlayerListPacket.cs" />
     <Compile Include="Game\Network\Packets\PlayersTransformPacket.cs" />
     <Compile Include="Game\Network\Packets\PlayerTransformPacket.cs" />
-    <Compile Include="Game\Network\Packets\ServerDisconnectPacket.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Game\PlayerListScript.cs" />
     <Compile Include="Game\Prefabs\PlayerScript.cs" />

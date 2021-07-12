@@ -38,7 +38,6 @@ public class NetworkSession : GamePlugin
         _packetRegistry.Register<ConnectionRequestPacket>();
         _packetRegistry.Register<ConnectionResponsePacket>();
         _packetRegistry.Register<ChatMessagePacket>();
-        _packetRegistry.Register<PlayerDisconnectPacket>();
         _packetRegistry.Register<PlayerConnectedPacket>();
         _packetRegistry.Register<PlayerDisconnectedPacket>();
         _packetRegistry.Register<PlayerListPacket>();
@@ -156,7 +155,9 @@ public class NetworkSession : GamePlugin
             Port = port
         });
         GameSession.Instance.LocalPlayer.Name = username;
+        Debug.Log("Connecting to server !");
         _peer.Connect();
+        Debug.Log("Connected to server !");
         _isConnected = true;
         _isServer = false;
     }
@@ -165,16 +166,6 @@ public class NetworkSession : GamePlugin
     {
         if (_isConnected)
         {
-            if (_isServer)
-            {
-                ServerDisconnectPacket sdp = new ServerDisconnectPacket();
-                SendAll(sdp, NetworkChannelType.Reliable);
-            }
-            else
-            {
-                PlayerDisconnectPacket pdp = new PlayerDisconnectPacket();
-                Send(pdp, NetworkChannelType.Reliable);
-            }
             if (!_isServer)
                 _peer.Disconnect();
             NetworkPeer.ShutdownPeer(_peer);
@@ -197,7 +188,7 @@ public class NetworkSession : GamePlugin
     
     public void Send(NetworkPacket packet, NetworkChannelType type, ref NetworkConnection conn)
     {
-        if (!_isConnected)
+        if (!_isServer || !_isConnected)
             return;
         var msg = _peer.BeginSendMessage();
         _packetRegistry.Send(packet, ref msg);
@@ -206,7 +197,7 @@ public class NetworkSession : GamePlugin
 
     public void SendAll(NetworkPacket packet, NetworkChannelType type)
     {
-        if (!_isConnected)
+        if (!_isServer || !_isConnected)
             return;
         var msg = _peer.BeginSendMessage();
         _packetRegistry.Send(packet, ref msg);
@@ -225,12 +216,12 @@ public class NetworkSession : GamePlugin
     
     public void DisconnectPlayer(ref Guid guid)
     {
-        if (_isServer)
-        {
-            PlayerDisconnectedPacket pdp = new PlayerDisconnectedPacket();
-            pdp.ID = guid;
-            SendAll(pdp, NetworkChannelType.ReliableOrdered);
-        }
+        if (!_isServer || !_isConnected)
+            return;
+        PlayerDisconnectedPacket pdp = new PlayerDisconnectedPacket();
+        pdp.ID = guid;
+        SendAll(pdp, NetworkChannelType.ReliableOrdered);
+        _peer.Disconnect(_connRegistry.ConnByGuid(ref guid));
         _connRegistry.Remove(ref guid);
         GameSession.Instance.RemovePlayer(ref guid);
     }
@@ -242,6 +233,8 @@ public class NetworkSession : GamePlugin
     
     public void RemovePlayer(ref Guid guid)
     {
+        if (!_isServer || !_isConnected)
+            return;
         _peer.Disconnect(_connRegistry.ConnByGuid(ref guid));
         _connRegistry.Remove(ref guid);
     }
