@@ -1,0 +1,206 @@
+{
+	"ID": "fa0ddf034c718af8fbf893836d3c7283",
+	"TypeName": "FlaxEngine.Prefab",
+	"EngineBuild": 6221,
+	"Data": [
+	{
+		"ID": "1440aef34913715de95133a71d610652",
+		"TypeName": "FlaxEngine.CharacterController",
+		"Name": "CharacterController",
+		"Transform": {
+			"Scale": {
+				"X": 0.75,
+				"Y": 0.75,
+				"Z": 0.75
+			}
+		},
+		"Radius": 70.0
+	},
+	{
+		"ID": "010530a4459d4f0cc6fe6cb49d5ab435",
+		"TypeName": "Game.PlayerScript",
+		"ParentID": "1440aef34913715de95133a71d610652",
+		"V": {
+	"SendTransformInterval": 0.1
+}
+	},
+	{
+		"ID": "d21dba8342aedfe0e0d959925153872d",
+		"TypeName": "FlaxEngine.StaticModel",
+		"ParentID": "1440aef34913715de95133a71d610652",
+		"Name": "Body",
+		"Transform": {
+			"Translation": {
+				"X": 0.0,
+				"Y": -32.82634735107422,
+				"Z": 0.0
+			},
+			"Scale": {
+				"X": 1.0,
+				"Y": 1.8826707601547242,
+				"Z": 1.0
+			}
+		},
+		"Model": "b43f0f8f4aaba3f3156896a5a22ba493",
+		"Buffer": {
+			"Entries": [
+				{
+					"Material": "28cac01246c37a932ab9e0b92a838cc2",
+					"ShadowsMode": 3,
+					"Visible": true,
+					"ReceiveDecals": true
+				}
+			]
+		}
+	},
+	{
+		"ID": "af3a53874c68119e7930d097b404b3f4",
+		"TypeName": "FlaxEngine.StaticModel",
+		"ParentID": "1440aef34913715de95133a71d610652",
+		"Name": "Head",
+		"Transform": {
+			"Translation": {
+				"X": 0.0,
+				"Y": 94.79055786132813,
+				"Z": 0.0
+			},
+			"Scale": {
+				"X": 0.699999988079071,
+				"Y": 0.699999988079071,
+				"Z": 0.699999988079071
+			}
+		},
+		"Model": "b43f0f8f4aaba3f3156896a5a22ba493",
+		"Buffer": {
+			"Entries": [
+				{
+					"Material": "28cac01246c37a932ab9e0b92a838cc2",
+					"ShadowsMode": 3,
+					"Visible": true,
+					"ReceiveDecals": true
+				}
+			]
+		}
+	},
+	{
+		"ID": "f2ee4e5444c586d8798d9a99b2ebddcf",
+		"TypeName": "FlaxEngine.UICanvas",
+		"ParentID": "1440aef34913715de95133a71d610652",
+		"Name": "UICanvas",
+		"Transform": {
+			"Translation": {
+				"X": 0.0,
+				"Y": 183.5449676513672,
+				"Z": 0.0
+			},
+			"Orientation": {
+				"X": 1.0,
+				"Y": 4.371138828673793e-8,
+				"Z": 4.371138828673793e-8,
+				"W": 1.910685465164705e-15
+			}
+		},
+		"V": {
+	"RenderMode": 3,
+	"IgnoreDepth": true,
+	"Size": {
+		"X": 500.0,
+		"Y": 500.0
+	}
+}
+	},
+	{
+		"ID": "794700cf4093df3b63f164b55f4b3019",
+		"TypeName": "FlaxEngine.UIControl",
+		"ParentID": "f2ee4e5444c586d8798d9a99b2ebddcf",
+		"Name": "Username",
+		"Transform": {
+			"Translation": {
+				"X": 250.0,
+				"Y": 250.0,
+				"Z": 0.0
+			},
+			"Orientation": {
+				"X": 1.0,
+				"Y": 4.371138828673793e-8,
+				"Z": 4.371138828673793e-8,
+				"W": 1.910685465164705e-15
+			}
+		},
+		"Control": "FlaxEngine.GUI.Label",
+		"Data": {
+	"Text": "Username",
+	"TextColor": {
+		"R": 1.0,
+		"G": 1.0,
+		"B": 1.0,
+		"A": 1.0
+	},
+	"TextColorHighlighted": {
+		"R": 1.0,
+		"G": 1.0,
+		"B": 1.0,
+		"A": 1.0
+	},
+	"HorizontalAlignment": 1,
+	"VerticalAlignment": 1,
+	"Wrapping": 0,
+	"Font": {
+		"Font": "4508d98f4aa1f0bd59362b81d47e38f4",
+		"Size": 20
+	},
+	"Margin": {
+		"Left": 0.0,
+		"Right": 0.0,
+		"Top": 0.0,
+		"Bottom": 0.0
+	},
+	"ClipText": false,
+	"AutoWidth": false,
+	"AutoHeight": false,
+	"AutoFitText": false,
+	"AutoFitTextRange": {
+		"X": 0.1,
+		"Y": 100.0
+	},
+	"ClipChildren": true,
+	"CullChildren": true,
+	"AnchorMin": {
+		"X": 0.0,
+		"Y": 0.0
+	},
+	"AnchorMax": {
+		"X": 1.0,
+		"Y": 1.0
+	},
+	"Offsets": {
+		"Left": 250.0,
+		"Right": 250.0,
+		"Top": 250.0,
+		"Bottom": 250.0
+	},
+	"Scale": {
+		"X": 1.0,
+		"Y": 1.0
+	},
+	"Pivot": {
+		"X": 0.5,
+		"Y": 0.5
+	},
+	"Shear": {
+		"X": 0.0,
+		"Y": 0.0
+	},
+	"Rotation": 0.0,
+	"BackgroundColor": {
+		"R": 0.00100004673,
+		"G": 0.00100004673,
+		"B": 0.00100004673,
+		"A": 1.0
+	},
+	"Enabled": true,
+	"Visible": true
+}
+	}
+]
+}
