@@ -333,7 +333,9 @@
 			"ID": "9053ad38428b10594c741db78d7fcca5",
 			"TypeName": "FreeCamera",
 			"ParentID": "b0d72c3746caebca055e1f921ca21c7c",
-			"V": {}
+			"V": {
+	"ChatRoot": "b00ad6444d05145964020893958b7bba"
+}
 		},
 		{
 			"ID": "a9ae06ec42882434ee61aab42a1c82c5",
@@ -341,6 +343,7 @@
 			"ParentID": "74a68a984824b4510d12589f199ad68f",
 			"Name": "CSG.Collider",
 			"HideFlags": 4,
+			"Material": "1126eb1f43a8e12e734c86a0da2981c8",
 			"CollisionData": "104e0dc7466c412f593951a357343ccf"
 		},
 		{
@@ -970,7 +973,7 @@
 		"R": 0.0,
 		"G": 0.0,
 		"B": 0.0,
-		"A": 0.28
+		"A": 0.0
 	},
 	"Enabled": true,
 	"Visible": true
@@ -1060,7 +1063,7 @@
 	},
 	"Offsets": {
 		"Left": 0.0,
-		"Right": 12.0,
+		"Right": 0.0,
 		"Top": -23.0,
 		"Bottom": 22.0
 	},

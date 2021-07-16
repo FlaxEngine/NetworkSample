@@ -14,17 +14,27 @@ public class ChatScript : Script
     public UIControl Panel;
     public UIControl VertPanel;
 
-    private bool _isWritting;
+    private bool _isWriting;
     private int _chatIndex;
+
+    public bool IsWriting
+    {
+        get => _isWriting;
+    }
     
     /// <inheritdoc/>
     public override void OnEnable()
     {
-        _isWritting = false;
+        _isWriting = false;
         ((TextBox)MessageBox.Control).Clear();
         ((VerticalPanel) VertPanel.Control).DisposeChildren();
         MessageBox.IsActive = false;
         _chatIndex = 0;
+    }
+
+    public override void OnDisable()
+    {
+        ((VerticalPanel) VertPanel.Control).DisposeChildren();
     }
 
     /// <inheritdoc/>
@@ -32,6 +42,7 @@ public class ChatScript : Script
     {
         if (GameSession.Instance.ChatMessages.Count - 1 >= _chatIndex)
         {
+            ((VerticalPanel) VertPanel.Control).BackgroundColor = new Color(0, 0, 0, 0.28f);
             while (_chatIndex < GameSession.Instance.ChatMessages.Count)
             {
                 var l = ((VerticalPanel) VertPanel.Control).AddChild<Label>();
@@ -47,16 +58,16 @@ public class ChatScript : Script
             }
         }
         
-        if (!_isWritting && Input.GetKeyUp(KeyboardKeys.Return))
+        if (!_isWriting && Input.GetKeyUp(KeyboardKeys.Return))
         {
-            _isWritting = true;
+            _isWriting = true;
             MessageBox.IsActive = true;
             MessageBox.Control.Focus();
             ((TextBox)MessageBox.Control).Clear();
         }
-        else if (_isWritting && Input.GetKeyUp(KeyboardKeys.Return))
+        else if (_isWriting && Input.GetKeyUp(KeyboardKeys.Return))
         {
-            _isWritting = false;
+            _isWriting = false;
             MessageBox.IsActive = false;
             if (((TextBox) MessageBox.Control).Text != string.Empty)
             {

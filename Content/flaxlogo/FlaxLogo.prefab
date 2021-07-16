@@ -1,0 +1,53 @@
+{
+	"ID": "da337a09454bf3b7221f84aab17974a1",
+	"TypeName": "FlaxEngine.Prefab",
+	"EngineBuild": 6221,
+	"Data": [
+	{
+		"ID": "abf6f92e44337054ea24119a6d283792",
+		"TypeName": "FlaxEngine.RigidBody",
+		"Name": "RigidBody",
+		"Transform": {
+			"Scale": {
+				"X": 0.3709000051021576,
+				"Y": 0.3709000051021576,
+				"Z": 0.3709000051021576
+			}
+		},
+		"OverrideMass": true,
+		"Mass": 220.0,
+		"UseCCD": true
+	},
+	{
+		"ID": "29944e0d423fa51ed6bdf081c4b6aaa1",
+		"TypeName": "FlaxEngine.StaticModel",
+		"ParentID": "abf6f92e44337054ea24119a6d283792",
+		"Name": "StaticModel",
+		"Model": "4506404b42034a70c45a6299fbd7089c",
+		"Buffer": {
+			"Entries": [
+				{
+					"Material": "00000000000000000000000000000000",
+					"ShadowsMode": 3,
+					"Visible": true,
+					"ReceiveDecals": true
+				}
+			]
+		}
+	},
+	{
+		"ID": "c6d5f5a24a7ad364addc7da0adf8e397",
+		"TypeName": "FlaxEngine.MeshCollider",
+		"ParentID": "abf6f92e44337054ea24119a6d283792",
+		"Name": "MeshCollider",
+		"Material": "1126eb1f43a8e12e734c86a0da2981c8",
+		"CollisionData": "71c455764d49e3c04b5c5aa15e1ae056"
+	},
+	{
+		"ID": "377f405b4096b5789d2deeaaccbcd243",
+		"TypeName": "FlaxEngine.EmptyActor",
+		"ParentID": "abf6f92e44337054ea24119a6d283792",
+		"Name": "Root"
+	}
+]
+}

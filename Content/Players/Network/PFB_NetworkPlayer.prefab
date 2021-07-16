@@ -14,15 +14,13 @@
 				"Z": 0.75
 			}
 		},
-		"Radius": 70.0
+		"Height": 110.0
 	},
 	{
 		"ID": "010530a4459d4f0cc6fe6cb49d5ab435",
 		"TypeName": "Game.PlayerScript",
 		"ParentID": "1440aef34913715de95133a71d610652",
-		"V": {
-	"SendTransformInterval": 0.1
-}
+		"V": {}
 	},
 	{
 		"ID": "d21dba8342aedfe0e0d959925153872d",

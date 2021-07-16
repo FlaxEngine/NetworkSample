@@ -5,3 +5,6 @@ Output
 packages
 .git
 .idea
+
+*.sln
+*.csproj

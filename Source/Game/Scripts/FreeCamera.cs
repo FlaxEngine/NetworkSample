@@ -12,6 +12,8 @@ public class FreeCamera : Script
     private float pitch;
     private float yaw;
     private float _lastTransformSent;
+
+    public Actor ChatRoot;
     
     public override void OnStart()
     {
@@ -59,7 +61,8 @@ public class FreeCamera : Script
         move.Normalize();
         move = camTrans.TransformDirection(move);
 
-        camTrans.Translation += move * MoveSpeed;
+        if (!ChatRoot.GetScript<ChatScript>().IsWriting)
+            camTrans.Translation += move * MoveSpeed;
 
         Actor.Transform = camTrans;
     }

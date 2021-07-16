@@ -116,7 +116,7 @@ public class NetworkSession : GamePlugin
         }
     }
 
-    public void Host(string username, ushort port)
+    public bool Host(string username, ushort port)
     {
         if (_isConnected)
             Disconnect();
@@ -133,12 +133,14 @@ public class NetworkSession : GamePlugin
             Address = "any",
             Port = port
         });
-        _peer.Listen();
+        if (!_peer.Listen())
+            return true;
         _isConnected = true;
         _isServer = true;
+        return false;
     }
 
-    public void Connect(string username, string address, ushort port)
+    public bool Connect(string username, string address, ushort port)
     {
         if (_isConnected)
             Disconnect();
@@ -155,11 +157,11 @@ public class NetworkSession : GamePlugin
             Port = port
         });
         GameSession.Instance.LocalPlayer.Name = username;
-        Debug.Log("Connecting to server !");
-        _peer.Connect();
-        Debug.Log("Connected to server !");
+        if (!_peer.Connect())
+            return true;
         _isConnected = true;
         _isServer = false;
+        return false;
     }
 
     public void Disconnect()

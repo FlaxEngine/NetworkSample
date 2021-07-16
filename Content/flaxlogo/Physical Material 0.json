@@ -1,0 +1,13 @@
+{
+	"ID": "1126eb1f43a8e12e734c86a0da2981c8",
+	"TypeName": "FlaxEngine.PhysicalMaterial",
+	"EngineBuild": 6221,
+	"Data": {
+	"Friction": 0.7,
+	"FrictionCombineMode": 0,
+	"OverrideFrictionCombineMode": false,
+	"Restitution": 0.2,
+	"RestitutionCombineMode": 0,
+	"OverrideRestitutionCombineMode": false
+}
+}

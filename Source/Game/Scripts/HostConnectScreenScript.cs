@@ -32,9 +32,12 @@ namespace Game
 
         private void OnHost()
         {
-            _netplug.Host(((TextBox)UsernameTextBox.Control).Text,ushort.Parse(((TextBox)PortTextBox.Control).Text));
-            JsonSerializer.ParseID("74a68a984824b4510d12589f199ad68f", out var guid);
-            Level.ChangeSceneAsync(guid);
+            if (!_netplug.Host(((TextBox) UsernameTextBox.Control).Text,
+                ushort.Parse(((TextBox) PortTextBox.Control).Text)))
+            {
+                JsonSerializer.ParseID("74a68a984824b4510d12589f199ad68f", out var guid);
+                Level.ChangeSceneAsync(guid);
+            }
         }
         
         /// <inheritdoc/>
