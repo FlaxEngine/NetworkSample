@@ -27,6 +27,7 @@ public class LocalPlayerScript : Script
     private float _horizontal;
     private float _vertical;
     private float _lastTransformSent;
+    private Actor ChatActor;
     
     /// <summary>
     /// Adds the movement and rotation to the camera (as input).
@@ -48,23 +49,21 @@ public class LocalPlayerScript : Script
         _lastTransformSent = 0;
         Actor.Transform = Scene.FindActor("SpawnPoint").Transform;
         Actor.Name = "Player_" + GameSession.Instance.LocalPlayer.Name;
+        ChatActor = Scene.FindActor("Chat");
     }
 
     public override void OnUpdate()
     {
         if (UseMouse)
         {
-            // Cursor
             Screen.CursorVisible = false;
             Screen.CursorLock = CursorLockMode.Locked;
-
-            // Mouse
+            
             Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             _pitch = Mathf.Clamp(_pitch + mouseDelta.Y, -88, 88);
             _yaw += mouseDelta.X;
         }
-
-        // Jump
+        
         if (CanJump && Input.GetAction("Jump"))
             _jump = true;
         
@@ -115,8 +114,7 @@ public class LocalPlayerScript : Script
             velocity = MoveAir(velocity.Normalized, Horizontal(_velocity));
             velocity.Y = _velocity.Y;
         }
-
-        // Fix direction
+        
         if (velocity.Length < 0.05f)
             velocity = Vector3.Zero;
 
@@ -124,22 +122,16 @@ public class LocalPlayerScript : Script
             velocity.Y = JumpForce;
 
         _jump = false;
-
-        // Apply gravity
+        
         velocity.Y += -Mathf.Abs(Physics.Gravity.Y * 2.5f) * Time.DeltaTime;
-
-        // Check if player is not blocked by something above head
+        
         if ((PlayerController.Flags & CharacterController.CollisionFlags.Above) != 0)
         {
             if (velocity.Y > 0)
-            {
-                // Player head hit something above, zero the gravity acceleration
                 velocity.Y = 0;
-            }
         }
-
-        // Move
-        PlayerController.Move(velocity * Time.DeltaTime);
+        if (ChatActor != null && !ChatActor.GetScript<ChatScript>().IsWriting)
+            PlayerController.Move(velocity * Time.DeltaTime);
         _velocity = velocity;
     }
 
@@ -149,10 +141,8 @@ public class LocalPlayerScript : Script
     // maxVelocity: The server-defined maximum player velocity (this is not strictly adhered to due to strafejumping)
     private Vector3 Accelerate(Vector3 accelDir, Vector3 prevVelocity, float accelerate, float maxVelocity)
     {
-        float projVel = Vector3.Dot(prevVelocity, accelDir); // Vector projection of Current velocity onto accelDir
-        float accelVel = accelerate * Time.DeltaTime; // Accelerated velocity in direction of movement
-
-        // If necessary, truncate the accelerated velocity so the vector projection does not exceed max velocity
+        float projVel = Vector3.Dot(prevVelocity, accelDir);
+        float accelVel = accelerate * Time.DeltaTime;
         if (projVel + accelVel > maxVelocity)
             accelVel = maxVelocity - projVel;
 
@@ -161,21 +151,17 @@ public class LocalPlayerScript : Script
 
     private Vector3 MoveGround(Vector3 accelDir, Vector3 prevVelocity)
     {
-        // Apply Friction
         float speed = prevVelocity.Length;
-        if (Math.Abs(speed) > 0.01f) // To avoid divide by zero errors
+        if (Math.Abs(speed) > 0.01f)
         {
             float drop = speed * Friction * Time.DeltaTime;
-            prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction
+            prevVelocity *= Mathf.Max(speed - drop, 0) / speed;
         }
-
-        // GroundAccelerate and MaxVelocityGround are server-defined movement variables
         return Accelerate(accelDir, prevVelocity, GroundAccelerate, MaxVelocityGround);
     }
 
     private Vector3 MoveAir(Vector3 accelDir, Vector3 prevVelocity)
     {
-        // air_accelerate and max_velocity_air are server-defined movement variables
         return Accelerate(accelDir, prevVelocity, AirAccelerate, MaxVelocityAir);
     }
 
