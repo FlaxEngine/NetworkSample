@@ -10,7 +10,7 @@ namespace Game
     /// <summary>
     /// NetworkPlayerScript Script.
     /// </summary>
-    public class PlayerScript : Script
+    public class NetworkPlayerScript : Script
     {
         public Player Player;
 

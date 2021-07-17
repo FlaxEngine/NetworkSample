@@ -1,6 +1,5 @@
 ﻿using System;
 using FlaxEngine;
-using FlaxEngine.Networking;
 
 public class Player
 {

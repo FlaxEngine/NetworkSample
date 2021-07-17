@@ -310,34 +310,6 @@
 			]
 		},
 		{
-			"ID": "b0d72c3746caebca055e1f921ca21c7c",
-			"TypeName": "FlaxEngine.Camera",
-			"ParentID": "74a68a984824b4510d12589f199ad68f",
-			"Name": "Camera",
-			"Transform": {
-				"Translation": {
-					"X": -107.51319122314453,
-					"Y": 87.28290557861328,
-					"Z": 131.2113494873047
-				},
-				"Orientation": {
-					"X": -0.04569302871823311,
-					"Y": -0.9367027282714844,
-					"Z": 0.1335863173007965,
-					"W": -0.3203979730606079
-				}
-			},
-			"StaticFlags": 0
-		},
-		{
-			"ID": "9053ad38428b10594c741db78d7fcca5",
-			"TypeName": "FreeCamera",
-			"ParentID": "b0d72c3746caebca055e1f921ca21c7c",
-			"V": {
-	"ChatRoot": "b00ad6444d05145964020893958b7bba"
-}
-		},
-		{
 			"ID": "a9ae06ec42882434ee61aab42a1c82c5",
 			"TypeName": "FlaxEngine.MeshCollider",
 			"ParentID": "74a68a984824b4510d12589f199ad68f",
@@ -1089,6 +1061,51 @@
 	"Enabled": true,
 	"Visible": true
 }
+		},
+		{
+			"ID": "672cf69c411c4d6c1b97c5a61d467576",
+			"PrefabID": "3c0da8cf4469a986341366b3d951e4ce",
+			"PrefabObjectID": "1440aef34913715de95133a71d610652",
+			"ParentID": "74a68a984824b4510d12589f199ad68f",
+			"Name": "PFB_LocalPlayer",
+			"Transform": {
+				"Translation": {
+					"X": 0.0,
+					"Y": 202.88868713378907,
+					"Z": 239.92279052734376
+				}
+			}
+		},
+		{
+			"ID": "8691cb9645ec691b43ae919cdc429bd2",
+			"PrefabID": "3c0da8cf4469a986341366b3d951e4ce",
+			"PrefabObjectID": "9e98ab71443952414432c1bd6affcdd5",
+			"ParentID": "672cf69c411c4d6c1b97c5a61d467576",
+			"V": {
+	"PlayerController": "672cf69c411c4d6c1b97c5a61d467576",
+	"CameraTarget": "98519ad446b1274168ac9fbcee6afddc",
+	"Camera": "06ae8a7d469da33153f5a3b55f1d1d16",
+	"MaxVelocityAir": 400.0
+}
+		},
+		{
+			"ID": "06ae8a7d469da33153f5a3b55f1d1d16",
+			"PrefabID": "3c0da8cf4469a986341366b3d951e4ce",
+			"PrefabObjectID": "8b0603c44c52faa46629598d36559644",
+			"ParentID": "672cf69c411c4d6c1b97c5a61d467576"
+		},
+		{
+			"ID": "18c66e4f4f58c75763706f8685500f5f",
+			"TypeName": "FlaxEngine.EmptyActor",
+			"ParentID": "74a68a984824b4510d12589f199ad68f",
+			"Name": "SpawnPoint",
+			"Transform": {
+				"Translation": {
+					"X": -281.3502197265625,
+					"Y": 142.57920837402345,
+					"Z": 36.899627685546878
+				}
+			}
 		}
 	]
 }

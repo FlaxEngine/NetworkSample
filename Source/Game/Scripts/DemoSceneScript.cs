@@ -37,7 +37,7 @@ namespace Game
         public void OnPlayerAdded(Player player)
         {
             player.Actor = PrefabManager.SpawnPrefab(PlayerPrefab, Actor);
-            var script = player.Actor.GetScript<PlayerScript>();
+            var script = player.Actor.GetScript<NetworkPlayerScript>();
             script.Player = player;
             player.Actor.Name = "Player_" + player.Name;
         }
@@ -62,7 +62,7 @@ namespace Game
         /// <inheritdoc/>
         public override void OnUpdate()
         {
-            if (NetworkSession.Instance.IsServer && Time.UnscaledGameTime - _lastTransformSent > 0.1f)
+            if (NetworkSession.Instance.IsServer && Time.UnscaledGameTime - _lastTransformSent > 0.05f)
             {
                 PlayersTransformPacket.TransformEntry te = new PlayersTransformPacket.TransformEntry();
                 PlayersTransformPacket ptp = new PlayersTransformPacket();

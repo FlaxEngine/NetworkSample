@@ -1,0 +1,35 @@
+{
+	"ID": "3c0da8cf4469a986341366b3d951e4ce",
+	"TypeName": "FlaxEngine.Prefab",
+	"EngineBuild": 6221,
+	"Data": [
+	{
+		"ID": "1440aef34913715de95133a71d610652",
+		"TypeName": "FlaxEngine.CharacterController",
+		"Name": "CharacterController",
+		"Height": 110.0
+	},
+	{
+		"ID": "9e98ab71443952414432c1bd6affcdd5",
+		"TypeName": "LocalPlayerScript",
+		"ParentID": "1440aef34913715de95133a71d610652",
+		"V": {
+	"PlayerController": "1440aef34913715de95133a71d610652",
+	"Camera": "8b0603c44c52faa46629598d36559644"
+}
+	},
+	{
+		"ID": "8b0603c44c52faa46629598d36559644",
+		"TypeName": "FlaxEngine.Camera",
+		"ParentID": "1440aef34913715de95133a71d610652",
+		"Name": "Camera",
+		"Transform": {
+			"Translation": {
+				"X": 0.0,
+				"Y": 69.61174011230469,
+				"Z": 0.0
+			}
+		}
+	}
+]
+}

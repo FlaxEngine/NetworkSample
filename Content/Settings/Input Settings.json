@@ -11,6 +11,14 @@
 			"MouseButton": 0,
 			"GamepadButton": 14,
 			"Gamepad": 0
+		},
+		{
+			"Name": "Jump",
+			"Mode": 1,
+			"Key": 32,
+			"MouseButton": 0,
+			"GamepadButton": 0,
+			"Gamepad": 0
 		}
 	],
 	"AxisMappings": [
