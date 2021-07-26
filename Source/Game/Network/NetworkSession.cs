@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using FlaxEngine;
 using FlaxEngine.Networking;
 
-
+/// <summary>
+/// Game service with packets and network connections handling
+/// </summary>
 public class NetworkSession : GamePlugin
 {
     private PacketRegistry _packetRegistry;
@@ -13,16 +13,10 @@ public class NetworkSession : GamePlugin
     private bool _isServer;
     private bool _isConnected;
 
-    public bool IsServer
-    {
-        get { return _isServer; }
-    }
+    public bool IsServer => _isServer;
 
-    public bool IsConnected
-    {
-        get { return _isConnected; }
-    }
-    
+    public bool IsConnected => _isConnected;
+
     public override PluginDescription Description => new PluginDescription()
     {
         Name = "NetworkPlugin",
@@ -34,7 +28,7 @@ public class NetworkSession : GamePlugin
         base.Initialize();
         _isConnected = false;
         _packetRegistry = new PacketRegistry();
-        
+
         _packetRegistry.Register<ConnectionRequestPacket>();
         _packetRegistry.Register<ConnectionResponsePacket>();
         _packetRegistry.Register<ChatMessagePacket>();
@@ -43,7 +37,7 @@ public class NetworkSession : GamePlugin
         _packetRegistry.Register<PlayerListPacket>();
         _packetRegistry.Register<PlayerTransformPacket>();
         _packetRegistry.Register<PlayersTransformPacket>();
-        
+
         _connRegistry = new ConnectionRegistry();
         Scripting.Update += Update;
     }
@@ -55,6 +49,8 @@ public class NetworkSession : GamePlugin
         Disconnect();
         _isConnected = false;
         _isServer = false;
+        if (_instance == this)
+            _instance = null;
     }
 
     public void Update()
@@ -110,7 +106,7 @@ public class NetworkSession : GamePlugin
                 }
                 else if (eventData.EventType == NetworkEventType.Connected)
                 {
-                    Send(new ConnectionRequestPacket(){Username = GameSession.Instance.LocalPlayer.Name}, NetworkChannelType.ReliableOrdered);
+                    Send(new ConnectionRequestPacket() {Username = GameSession.Instance.LocalPlayer.Name}, NetworkChannelType.ReliableOrdered);
                 }
             }
         }
@@ -120,7 +116,7 @@ public class NetworkSession : GamePlugin
     {
         if (_isConnected)
             Disconnect();
-        
+
         _connRegistry.Clear();
         GameSession.Instance.LocalPlayer.Name = username;
         GameSession.Instance.LocalPlayer.ID = Guid.NewGuid();
@@ -172,6 +168,7 @@ public class NetworkSession : GamePlugin
                 _peer.Disconnect();
             NetworkPeer.ShutdownPeer(_peer);
         }
+
         _isConnected = false;
         _isServer = false;
     }
@@ -182,12 +179,12 @@ public class NetworkSession : GamePlugin
             return;
         var msg = _peer.BeginSendMessage();
         _packetRegistry.Send(packet, ref msg);
-        if (_isServer) 
+        if (_isServer)
             _peer.EndSendMessage(type, msg, _connRegistry.ToArray());
         else
             _peer.EndSendMessage(type, msg);
     }
-    
+
     public void Send(NetworkPacket packet, NetworkChannelType type, ref NetworkConnection conn)
     {
         if (!_isServer || !_isConnected)
@@ -210,12 +207,12 @@ public class NetworkSession : GamePlugin
     {
         return _connRegistry.GuidByConn(ref conn);
     }
-    
+
     public void DisconnectPlayer(Player player)
     {
         DisconnectPlayer(ref player.ID);
     }
-    
+
     public void DisconnectPlayer(ref Guid guid)
     {
         if (!_isServer || !_isConnected)
@@ -232,7 +229,7 @@ public class NetworkSession : GamePlugin
     {
         RemovePlayer(ref player.ID);
     }
-    
+
     public void RemovePlayer(ref Guid guid)
     {
         if (!_isServer || !_isConnected)
@@ -240,8 +237,9 @@ public class NetworkSession : GamePlugin
         _peer.Disconnect(_connRegistry.ConnByGuid(ref guid));
         _connRegistry.Remove(ref guid);
     }
-    
+
     private static NetworkSession _instance;
+
     public static NetworkSession Instance
     {
         get

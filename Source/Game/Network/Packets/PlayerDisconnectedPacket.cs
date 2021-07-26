@@ -4,7 +4,7 @@ using FlaxEngine.Networking;
 public class PlayerDisconnectedPacket : NetworkPacket
 {
     public Guid ID;
-    
+
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteGuid(ID);

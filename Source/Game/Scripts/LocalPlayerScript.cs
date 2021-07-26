@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Concurrent;
 using FlaxEngine;
 using FlaxEngine.Networking;
 
@@ -7,7 +6,7 @@ public class LocalPlayerScript : Script
 {
     public CharacterController PlayerController;
     public Camera Camera;
-    
+
     public float CameraSmoothing = 20.0f;
 
     public bool CanJump = true;
@@ -27,8 +26,8 @@ public class LocalPlayerScript : Script
     private float _horizontal;
     private float _vertical;
     private float _lastTransformSent;
-    private Actor ChatActor;
-    
+    private Actor _chatActor;
+
     /// <summary>
     /// Adds the movement and rotation to the camera (as input).
     /// </summary>
@@ -49,7 +48,7 @@ public class LocalPlayerScript : Script
         _lastTransformSent = 0;
         Actor.Transform = Scene.FindActor("SpawnPoint").Transform;
         Actor.Name = "Player_" + GameSession.Instance.LocalPlayer.Name;
-        ChatActor = Scene.FindActor("Chat");
+        _chatActor = Scene.FindActor("Chat");
     }
 
     public override void OnUpdate()
@@ -58,15 +57,15 @@ public class LocalPlayerScript : Script
         {
             Screen.CursorVisible = false;
             Screen.CursorLock = CursorLockMode.Locked;
-            
+
             Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             _pitch = Mathf.Clamp(_pitch + mouseDelta.Y, -88, 88);
             _yaw += mouseDelta.X;
         }
-        
+
         if (CanJump && Input.GetAction("Jump"))
             _jump = true;
-        
+
         GameSession.Instance.LocalPlayer.Position = Actor.Transform.Translation;
         GameSession.Instance.LocalPlayer.Rotation = Actor.Transform.Orientation;
         if (Time.UnscaledGameTime - _lastTransformSent > 0.05f)
@@ -94,7 +93,7 @@ public class LocalPlayerScript : Script
         var camFactor = Mathf.Saturate(CameraSmoothing * Time.DeltaTime);
         Camera.LocalOrientation = Quaternion.Lerp(Camera.LocalOrientation, Quaternion.Euler(_pitch, 0, 0), camFactor);
         PlayerController.Orientation = Quaternion.Lerp(PlayerController.LocalOrientation, Quaternion.Euler(0, _yaw, 0), camFactor);
-        
+
         var inputH = Input.GetAxis("Horizontal") + _horizontal;
         var inputV = Input.GetAxis("Vertical") + _vertical;
         _horizontal = 0;
@@ -114,7 +113,7 @@ public class LocalPlayerScript : Script
             velocity = MoveAir(velocity.Normalized, Horizontal(_velocity));
             velocity.Y = _velocity.Y;
         }
-        
+
         if (velocity.Length < 0.05f)
             velocity = Vector3.Zero;
 
@@ -122,15 +121,16 @@ public class LocalPlayerScript : Script
             velocity.Y = JumpForce;
 
         _jump = false;
-        
+
         velocity.Y += -Mathf.Abs(Physics.Gravity.Y * 2.5f) * Time.DeltaTime;
-        
+
         if ((PlayerController.Flags & CharacterController.CollisionFlags.Above) != 0)
         {
             if (velocity.Y > 0)
                 velocity.Y = 0;
         }
-        if (ChatActor != null && !ChatActor.GetScript<ChatScript>().IsWriting)
+
+        if (_chatActor != null && !_chatActor.GetScript<ChatScript>().IsWriting)
             PlayerController.Move(velocity * Time.DeltaTime);
         _velocity = velocity;
     }
@@ -157,6 +157,7 @@ public class LocalPlayerScript : Script
             float drop = speed * Friction * Time.DeltaTime;
             prevVelocity *= Mathf.Max(speed - drop, 0) / speed;
         }
+
         return Accelerate(accelDir, prevVelocity, GroundAccelerate, MaxVelocityGround);
     }
 

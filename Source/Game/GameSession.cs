@@ -8,14 +8,19 @@ public struct ChatMessage
     public string Message;
 }
 
+/// <summary>
+/// Game service with players list including local player.
+/// </summary>
 public class GameSession : GamePlugin
 {
     public delegate void OnPlayerAddedHandler(Player player);
+
     public event OnPlayerAddedHandler OnPlayerAdded;
-    
+
     public delegate void OnPlayerRemovedHandler(Player player);
+
     public event OnPlayerRemovedHandler OnPlayerRemoved;
-    
+
     public List<Player> Players = new List<Player>();
     public List<ChatMessage> ChatMessages = new List<ChatMessage>();
 
@@ -23,8 +28,16 @@ public class GameSession : GamePlugin
 
     public override void Initialize()
     {
+        base.Initialize();
         Players.Clear();
         LocalPlayer = new Player();
+    }
+
+    public override void Deinitialize()
+    {
+        if (_instance == this)
+            _instance = null;
+        base.Deinitialize();
     }
 
     public Player AddPlayer()
@@ -40,7 +53,7 @@ public class GameSession : GamePlugin
         AddPlayer(p);
         return p;
     }
-    
+
     public void AddPlayer(Player player)
     {
         Players.Add(player);
@@ -49,7 +62,7 @@ public class GameSession : GamePlugin
 
     public bool RemovePlayer(ref Guid id)
     {
-        for (var i = Players.Count-1; i >= 0; i--)
+        for (var i = Players.Count - 1; i >= 0; i--)
         {
             if (Players[i].ID == id)
             {
@@ -59,12 +72,13 @@ public class GameSession : GamePlugin
                 return true;
             }
         }
+
         return false;
     }
 
     public void AddChatMessage(Guid sender, string message)
     {
-        ChatMessages.Add(new ChatMessage(){Sender = sender, Message = message});
+        ChatMessages.Add(new ChatMessage() {Sender = sender, Message = message});
     }
 
     public Player GetPlayer(Guid guid)
@@ -76,10 +90,12 @@ public class GameSession : GamePlugin
             if (Players[i].ID == guid)
                 return Players[i];
         }
+
         return null;
     }
 
     private static GameSession _instance;
+
     public static GameSession Instance
     {
         get

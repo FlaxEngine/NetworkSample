@@ -8,12 +8,12 @@ public class ConnectionResponsePacket : NetworkPacket
     public enum ConnectionState : byte
     {
         Accepted,
-        Rejected
+        Rejected,
     }
-    
+
     public ConnectionState State;
     public Guid ID = Guid.Empty;
-    
+
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteByte((byte)State);

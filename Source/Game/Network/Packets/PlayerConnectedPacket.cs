@@ -5,7 +5,7 @@ public class PlayerConnectedPacket : NetworkPacket
 {
     public Guid ID;
     public string Username;
-    
+
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteGuid(ID);

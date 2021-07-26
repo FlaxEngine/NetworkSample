@@ -6,7 +6,7 @@ using FlaxEngine.Networking;
 public class PacketRegistry
 {
     private Dictionary<int, Type> _packets = new Dictionary<int, Type>();
-    
+
     public void Register<T>() where T : NetworkPacket
     {
         // if it's already registered
@@ -22,6 +22,7 @@ public class PacketRegistry
             Debug.LogWarning($"Packet not registered, Type=" + t);
             return;
         }
+
         var type = _packets[t];
         var p = (NetworkPacket)Activator.CreateInstance(type);
         p.Sender = eventData.Sender;

@@ -13,7 +13,7 @@ public class PlayersTransformPacket : NetworkPacket
     }
 
     public List<TransformEntry> Transforms = new List<TransformEntry>();
-    
+
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteInt32(Transforms.Count);
@@ -38,7 +38,7 @@ public class PlayersTransformPacket : NetworkPacket
             Transforms.Add(te);
         }
     }
-    
+
     public override void ClientHandler()
     {
         for (var i = 0; i < Transforms.Count; i++)

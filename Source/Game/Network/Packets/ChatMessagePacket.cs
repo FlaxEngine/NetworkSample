@@ -1,40 +1,37 @@
 ﻿using System;
-using FlaxEngine;
 using FlaxEngine.Networking;
-using Game;
 
 public class ChatMessagePacket : NetworkPacket
 {
     public string Message = string.Empty;
-
-    public Guid Sender = Guid.Empty;
+    public Guid SenderID = Guid.Empty;
 
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteString(Message);
-        msg.WriteBoolean(Sender != Guid.Empty);
-        if (Sender != Guid.Empty)
-            msg.WriteGuid(Sender);
+        var hasSender = SenderID != Guid.Empty;
+        msg.WriteBoolean(hasSender);
+        if (hasSender)
+            msg.WriteGuid(SenderID);
     }
-    
+
     public override void Deserialize(ref NetworkMessage msg)
     {
-       Message = msg.ReadString();
-       if (msg.ReadBoolean())
-           Sender = msg.ReadGuid();
+        Message = msg.ReadString();
+        SenderID = msg.ReadBoolean() ? msg.ReadGuid() : Guid.Empty;
     }
 
     public override void ServerHandler(ref NetworkConnection sender)
     {
-        Sender = PluginManager.GetPlugin<NetworkSession>().GuidByConn(ref sender);
-        PluginManager.GetPlugin<GameSession>().AddChatMessage(Sender, Message);
-        PluginManager.GetPlugin<NetworkSession>().SendAll(this, NetworkChannelType.ReliableOrdered);
+        SenderID = NetworkSession.Instance.GuidByConn(ref sender);
+        GameSession.Instance.AddChatMessage(SenderID, Message);
+        NetworkSession.Instance.SendAll(this, NetworkChannelType.ReliableOrdered);
     }
 
     public override void ClientHandler()
     {
-        if (GameSession.Instance.LocalPlayer.ID == Sender)
+        if (GameSession.Instance.LocalPlayer.ID == SenderID)
             return;
-        PluginManager.GetPlugin<GameSession>().AddChatMessage(Sender, Message);
+        GameSession.Instance.AddChatMessage(SenderID, Message);
     }
 }

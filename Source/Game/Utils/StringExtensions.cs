@@ -1,5 +1,4 @@
-﻿
-public static class StringExtensions
+﻿public static class StringExtensions
 {
     public static int GetDeterministicHashCode(this string str)
     {

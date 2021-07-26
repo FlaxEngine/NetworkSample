@@ -14,7 +14,7 @@ public class FreeCamera : Script
     private float _lastTransformSent;
 
     public Actor ChatRoot;
-    
+
     public override void OnStart()
     {
         var initialEulerAngles = Actor.Orientation.EulerAngles;
@@ -35,7 +35,7 @@ public class FreeCamera : Script
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         pitch = Mathf.Clamp(pitch + mouseDelta.Y, -88, 88);
         yaw += mouseDelta.X;
-        
+
         GameSession.Instance.LocalPlayer.Position = Actor.Transform.Translation;
         GameSession.Instance.LocalPlayer.Rotation = Actor.Transform.Orientation;
         if (Time.UnscaledGameTime - _lastTransformSent > 0.1f)

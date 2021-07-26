@@ -1,18 +1,15 @@
-﻿using System;
-using FlaxEditor;
+﻿using FlaxEditor;
 using FlaxEngine;
 using FlaxEngine.GUI;
 using FlaxEngine.Networking;
-using Game;
 
-/// <summary>
-/// OnlineScript Script.
-/// </summary>
 public class ChatScript : Script
 {
     public UIControl MessageBox;
     public UIControl Panel;
     public UIControl VertPanel;
+
+    public FontReference ChatFont;
 
     private bool _isWriting;
     private int _chatIndex;
@@ -21,20 +18,20 @@ public class ChatScript : Script
     {
         get => _isWriting;
     }
-    
+
     /// <inheritdoc/>
     public override void OnEnable()
     {
         _isWriting = false;
         ((TextBox)MessageBox.Control).Clear();
-        ((VerticalPanel) VertPanel.Control).DisposeChildren();
+        ((VerticalPanel)VertPanel.Control).DisposeChildren();
         MessageBox.IsActive = false;
         _chatIndex = 0;
     }
 
     public override void OnDisable()
     {
-        ((VerticalPanel) VertPanel.Control).DisposeChildren();
+        ((VerticalPanel)VertPanel.Control).DisposeChildren();
     }
 
     /// <inheritdoc/>
@@ -42,22 +39,24 @@ public class ChatScript : Script
     {
         if (GameSession.Instance.ChatMessages.Count - 1 >= _chatIndex)
         {
-            ((VerticalPanel) VertPanel.Control).BackgroundColor = new Color(0, 0, 0, 0.28f);
+            ((VerticalPanel)VertPanel.Control).BackgroundColor = new Color(0, 0, 0, 0.28f);
             while (_chatIndex < GameSession.Instance.ChatMessages.Count)
             {
-                var l = ((VerticalPanel) VertPanel.Control).AddChild<Label>();
+                var l = ((VerticalPanel)VertPanel.Control).AddChild<Label>();
                 var player = GameSession.Instance.GetPlayer(GameSession.Instance.ChatMessages[_chatIndex].Sender);
-                string name = String.Empty;
+                var name = string.Empty;
                 if (player != null)
                 {
                     name = player.Name;
                 }
+
+                l.Font = ChatFont;
                 l.Text = name + " : " + GameSession.Instance.ChatMessages[_chatIndex].Message;
                 l.HorizontalAlignment = TextAlignment.Near;
                 _chatIndex++;
             }
         }
-        
+
         if (!_isWriting && Input.GetKeyUp(KeyboardKeys.Return))
         {
             _isWriting = true;
@@ -69,12 +68,12 @@ public class ChatScript : Script
         {
             _isWriting = false;
             MessageBox.IsActive = false;
-            if (((TextBox) MessageBox.Control).Text != string.Empty)
+            if (((TextBox)MessageBox.Control).Text != string.Empty)
             {
                 GameSession.Instance.AddChatMessage(GameSession.Instance.LocalPlayer.ID, ((TextBox)MessageBox.Control).Text);
                 ChatMessagePacket p = new ChatMessagePacket();
-                p.Message = ((TextBox) MessageBox.Control).Text;
-                p.Sender = GameSession.Instance.LocalPlayer.ID;
+                p.Message = ((TextBox)MessageBox.Control).Text;
+                p.SenderID = GameSession.Instance.LocalPlayer.ID;
                 NetworkSession.Instance.Send(p, NetworkChannelType.Reliable);
                 ((TextBox)MessageBox.Control).Clear();
             }
@@ -82,6 +81,7 @@ public class ChatScript : Script
             Editor.Instance.Windows.GameWin.Focus();
 #endif
         }
+
         ((Panel)Panel.Control).ScrollViewTo(VertPanel.Control.Bounds.BottomLeft, true);
     }
 }

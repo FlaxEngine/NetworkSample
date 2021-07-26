@@ -6,7 +6,7 @@ public class PlayerTransformPacket : NetworkPacket
 {
     public Vector3 Position;
     public Quaternion Rotation;
-    
+
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteVector3(Position);

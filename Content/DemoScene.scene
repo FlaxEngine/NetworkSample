@@ -1,7 +1,7 @@
 {
 	"ID": "74a68a984824b4510d12589f199ad68f",
 	"TypeName": "FlaxEngine.SceneAsset",
-	"EngineBuild": 6221,
+	"EngineBuild": 6222,
 	"Data": [
 		{
 			"ID": "74a68a984824b4510d12589f199ad68f",
@@ -33,9 +33,7 @@
 			"ID": "6ff0581d474c84230b3d0fa9f17e0972",
 			"TypeName": "ExitOnEsc",
 			"ParentID": "74a68a984824b4510d12589f199ad68f",
-			"V": {
-	"Font": "ab96b25a49461d9f4f819484cf5c8213"
-}
+			"V": {}
 		},
 		{
 			"ID": "37e1ccab4634efa613650999b83cb98d",
@@ -381,8 +379,8 @@
 			"Name": "PlayerList",
 			"Transform": {
 				"Translation": {
-					"X": 445.5,
-					"Y": 190.0,
+					"X": 557.0,
+					"Y": 303.5,
 					"Z": 0.0
 				}
 			},
@@ -440,7 +438,11 @@
 			"TypeName": "Game.PlayerListScript",
 			"ParentID": "f3abe03a4d39ed82eef37d9a2f6ce9bd",
 			"V": {
-	"VerticalPanel": "8f4645804d234692cfb1b9a27ffd5825"
+	"VerticalPanel": "8f4645804d234692cfb1b9a27ffd5825",
+	"ListFont": {
+		"Font": "4508d98f4aa1f0bd59362b81d47e38f4",
+		"Size": 9
+	}
 }
 		},
 		{
@@ -776,7 +778,7 @@
 			"Transform": {
 				"Translation": {
 					"X": 5.0,
-					"Y": 295.0,
+					"Y": 408.5,
 					"Z": -2.168404344971009e-19
 				}
 			},
@@ -836,7 +838,11 @@
 			"V": {
 	"MessageBox": "c49bee084383f3d96ada4fbfc6566c90",
 	"Panel": "ed533eaa449ae52e72334bbd9c1f8850",
-	"VertPanel": "a89523dd45f914b02c21c3802098d963"
+	"VertPanel": "a89523dd45f914b02c21c3802098d963",
+	"ChatFont": {
+		"Font": "4508d98f4aa1f0bd59362b81d47e38f4",
+		"Size": 9
+	}
 }
 		},
 		{
@@ -1083,7 +1089,6 @@
 			"ParentID": "672cf69c411c4d6c1b97c5a61d467576",
 			"V": {
 	"PlayerController": "672cf69c411c4d6c1b97c5a61d467576",
-	"CameraTarget": "98519ad446b1274168ac9fbcee6afddc",
 	"Camera": "06ae8a7d469da33153f5a3b55f1d1d16",
 	"MaxVelocityAir": 400.0
 }

@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using FlaxEngine;
 using FlaxEngine.Networking;
 
 public class PlayerListPacket : NetworkPacket
 {
     public List<Player> Players = new List<Player>();
-    
+
     public override void Serialize(ref NetworkMessage msg)
     {
         msg.WriteInt32(Players.Count + 1);
@@ -14,7 +13,7 @@ public class PlayerListPacket : NetworkPacket
             msg.WriteString(Players[i].Name);
             msg.WriteGuid(Players[i].ID);
         }
-        
+
         msg.WriteString(GameSession.Instance.LocalPlayer.Name);
         msg.WriteGuid(GameSession.Instance.LocalPlayer.ID);
     }
@@ -31,7 +30,7 @@ public class PlayerListPacket : NetworkPacket
             Players.Add(p);
         }
     }
-    
+
     public override void ClientHandler()
     {
         for (var i = 0; i < Players.Count; i++)
