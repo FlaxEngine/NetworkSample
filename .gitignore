@@ -8,3 +8,5 @@ packages/
 .git
 .idea
 .vs
+*.csproj
+*.sln
