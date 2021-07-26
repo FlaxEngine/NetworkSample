@@ -2,7 +2,7 @@
 
 ![Network Sample Main Menu](Content/network-sample-menu.png)
 
-[Network Sample](https://github.com/FlaxEngine/NetworkSample) is an open-source sample project that contains multiplayer game lobby implementation with player synchronization and chat. It can be sued as a foundation for multiplayer projects using Flax low-level networking transportation layer.
+[Network Sample](https://github.com/FlaxEngine/NetworkSample) is an open-source sample project that contains multiplayer game lobby implementation with player synchronization and chat. It can be used as a foundation for multiplayer projects using Flax low-level networking transportation layer.
 
 Minimum supported Flax version: `1.2`.
 
