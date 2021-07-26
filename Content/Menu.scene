@@ -1,7 +1,7 @@
 {
 	"ID": "d8ddc95040eec2d25b65a0b68c298f0e",
 	"TypeName": "FlaxEngine.SceneAsset",
-	"EngineBuild": 6221,
+	"EngineBuild": 6222,
 	"Data": [
 		{
 			"ID": "d8ddc95040eec2d25b65a0b68c298f0e",
@@ -21,9 +21,7 @@
 			"ID": "d7a07b8a4adfa1bd5dfd75907a9fec3d",
 			"TypeName": "ExitOnEsc",
 			"ParentID": "d8ddc95040eec2d25b65a0b68c298f0e",
-			"V": {
-	"Font": "ab96b25a49461d9f4f819484cf5c8213"
-}
+			"V": {}
 		},
 		{
 			"ID": "4c54a11e4ff7210b41f97eb03693c04d",
@@ -43,7 +41,8 @@
 					"W": 0.9238795042037964
 				}
 			},
-			"Brightness": 2.0
+			"Brightness": 2.0,
+			"ShadowsMode": 0
 		},
 		{
 			"ID": "04dd4121461754aa5aa8acbbc3385821",
@@ -162,8 +161,8 @@
 			"Name": "HorizontalPanel",
 			"Transform": {
 				"Translation": {
-					"X": 293.0,
-					"Y": 165.0,
+					"X": 404.5,
+					"Y": 278.5,
 					"Z": 0.0
 				}
 			},
@@ -361,7 +360,8 @@
 	"AddressTextBox": "2f0db94e40b9cdb7737744b9b7e7a6ef",
 	"ConnectButton": "d9bba6074d44b4a57a048fb17ffd7896",
 	"PortTextBox": "fb5af0154a3f82191d2a5589eb539540",
-	"HostButton": "b5993fc54b8b6702aef6b6a57143e619"
+	"HostButton": "b5993fc54b8b6702aef6b6a57143e619",
+	"GameScene": "74a68a984824b4510d12589f199ad68f"
 }
 		},
 		{
@@ -1071,7 +1071,7 @@
 	},
 	"Offsets": {
 		"Left": -75.0,
-		"Right": 158.5,
+		"Right": 153.0,
 		"Top": 5.0,
 		"Bottom": 50.0
 	},
@@ -1279,7 +1279,7 @@
 		"Left": 2.0,
 		"Right": 346.0,
 		"Top": 169.0,
-		"Bottom": 44.0
+		"Bottom": 64.0
 	},
 	"Scale": {
 		"X": 1.0,
@@ -1453,6 +1453,93 @@
 		"Left": 10.0,
 		"Right": 334.0,
 		"Top": 22.0,
+		"Bottom": 20.0
+	},
+	"Scale": {
+		"X": 1.0,
+		"Y": 1.0
+	},
+	"Pivot": {
+		"X": 0.5,
+		"Y": 0.5
+	},
+	"Shear": {
+		"X": 0.0,
+		"Y": 0.0
+	},
+	"Rotation": 0.0,
+	"BackgroundColor": {
+		"R": 0.0,
+		"G": 0.0,
+		"B": 0.0,
+		"A": 0.0
+	},
+	"Enabled": true,
+	"Visible": true
+}
+		},
+		{
+			"ID": "d0e8d3ae46b13ccf7f1be0837203326e",
+			"TypeName": "FlaxEngine.UIControl",
+			"ParentID": "782768dc48e160a14cd853b2121a9a93",
+			"Name": "Label 1",
+			"Transform": {
+				"Translation": {
+					"X": 10.0,
+					"Y": 42.0,
+					"Z": 1.3073986337985843e-12
+				}
+			},
+			"Control": "FlaxEngine.GUI.Label",
+			"Data": {
+	"Text": "-  Hold TAB to see players list.",
+	"TextColor": {
+		"R": 1.0,
+		"G": 1.0,
+		"B": 1.0,
+		"A": 1.0
+	},
+	"TextColorHighlighted": {
+		"R": 1.0,
+		"G": 1.0,
+		"B": 1.0,
+		"A": 1.0
+	},
+	"HorizontalAlignment": 0,
+	"VerticalAlignment": 1,
+	"Wrapping": 0,
+	"Font": {
+		"Font": "4508d98f4aa1f0bd59362b81d47e38f4",
+		"Size": 10
+	},
+	"Margin": {
+		"Left": 0.0,
+		"Right": 0.0,
+		"Top": 0.0,
+		"Bottom": 0.0
+	},
+	"ClipText": false,
+	"AutoWidth": false,
+	"AutoHeight": false,
+	"AutoFitText": false,
+	"AutoFitTextRange": {
+		"X": 0.1,
+		"Y": 100.0
+	},
+	"ClipChildren": true,
+	"CullChildren": true,
+	"AnchorMin": {
+		"X": 0.0,
+		"Y": 0.0
+	},
+	"AnchorMax": {
+		"X": 0.0,
+		"Y": 0.0
+	},
+	"Offsets": {
+		"Left": 10.0,
+		"Right": 334.0,
+		"Top": 42.0,
 		"Bottom": 20.0
 	},
 	"Scale": {

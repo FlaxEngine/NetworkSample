@@ -1,9 +1,9 @@
 {
 	"ID": "9eba3d2a4cee4c099117f49c5dffc171",
 	"TypeName": "FlaxEditor.Content.Settings.GameSettings",
-	"EngineBuild": 6221,
+	"EngineBuild": 6222,
 	"Data": {
-	"ProductName": "Basic Scene",
+	"ProductName": "NetwrokSample",
 	"CompanyName": "My Company",
 	"FirstScene": "d8ddc95040eec2d25b65a0b68c298f0e",
 	"NoSplashScreen": false,
@@ -14,7 +14,9 @@
 	"Input": "f4c1c67842f6b745a6976aa8e7eff360",
 	"Graphics": "4eaf325e4cd72aa4cdeb6393cad05466",
 	"Navigation": "9d5e29604efb16eff6b815aa4a110227",
+	"Localization": "7ce4a8c64c8116aefe23b184adcabcfb",
 	"GameCooking": "2364031e4e327637c1ad88b415fa756e",
+	"Streaming": "46f7ca204355d836ff4bf4aa43d211ac",
 	"WindowsPlatform": "79ac390447f4263e30f56e9190a70dbc",
 	"UWPPlatform": "8660bbf44f1ea61cb9bc4580b3631973",
 	"LinuxPlatform": "1bf4eedd41508974d6646e8faa55420a",
