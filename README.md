@@ -28,7 +28,7 @@ Main types overview:
 * **Player** - player information container (Name, ID, Actor, etc.)
 * **GameSession** - game service with players list including local player
 * **NetworkSession** - game service with packets and network connections handling
-* **Game/Network/Packes...** - various types of network packets used by the sample (implementations of `NetworkPacket`)
+* **Game/Network/Packets...** - various types of network packets used by the sample (implementations of `NetworkPacket`)
 
 ## License
 
