@@ -122,7 +122,7 @@ public class NetworkSession : GamePlugin
         GameSession.Instance.LocalPlayer.ID = Guid.NewGuid();
         _peer = NetworkPeer.CreatePeer(new NetworkConfig
         {
-            NetworkDriverType = NetworkDriverType.ENet,
+            NetworkDriver = new ENetDriver(),
             ConnectionsLimit = 32,
             MessagePoolSize = 256,
             MessageSize = 1400,
@@ -145,7 +145,7 @@ public class NetworkSession : GamePlugin
         _isServer = false;
         _peer = NetworkPeer.CreatePeer(new NetworkConfig
         {
-            NetworkDriverType = NetworkDriverType.ENet,
+            NetworkDriver = new ENetDriver(),
             ConnectionsLimit = 32,
             MessagePoolSize = 256,
             MessageSize = 1400,
