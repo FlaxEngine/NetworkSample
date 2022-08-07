@@ -17,11 +17,14 @@ public class NetworkSession : GamePlugin
 
     public bool IsConnected => _isConnected;
 
-    public override PluginDescription Description => new PluginDescription()
+    public NetworkSession()
     {
-        Name = "NetworkPlugin",
-        Description = "Network logic"
-    };
+        _description = new PluginDescription
+        {
+            Name = "NetworkPlugin",
+            Description = "Network logic"
+        };
+    }
 
     public override void Initialize()
     {
@@ -106,7 +109,7 @@ public class NetworkSession : GamePlugin
                 }
                 else if (eventData.EventType == NetworkEventType.Connected)
                 {
-                    Send(new ConnectionRequestPacket() {Username = GameSession.Instance.LocalPlayer.Name}, NetworkChannelType.ReliableOrdered);
+                    Send(new ConnectionRequestPacket() { Username = GameSession.Instance.LocalPlayer.Name }, NetworkChannelType.ReliableOrdered);
                 }
             }
         }
