@@ -83,8 +83,6 @@ public class NetworkSession : GamePlugin
                     var g = GuidByConn(ref eventData.Sender);
                     GameSession.Instance.RemovePlayer(ref g);
                     _connRegistry.Remove(ref eventData.Sender);
-                    _isConnected = false;
-                    _isServer = false;
                 }
             }
         }
